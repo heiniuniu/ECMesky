@@ -7,6 +7,7 @@ public class News {
 
     private String title;
     private long id;
+
     private String imgUrl;
 
     public String getTitle() {
