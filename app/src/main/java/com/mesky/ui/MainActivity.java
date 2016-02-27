@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity {
      * 指定当前在哪一页
      */
     public static int index;
+
     public static DMFragmentTabHost mTabHost = null;
     private String[] titles = null;
     private Class[] clazzs = {HomeFragment.class, DiscoveryFragment.class,DiscoveryFragment.class, MessageFragment.class, MyFragment.class};
