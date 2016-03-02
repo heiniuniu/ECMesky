@@ -29,9 +29,10 @@
 
         <com.mesky.widgets.TabsLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:background="#FFF"
             android:id="@+id/tabs" />
+        <!--            android:layout_height="40dp"-->
 
     </LinearLayout>
 

@@ -1,6 +1,5 @@
 package com.mesky.widgets;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.graphics.Rect;
 import android.support.v4.view.PagerAdapter;
@@ -8,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,13 +19,15 @@ import com.mesky.utils.DensityUtil;
  */
 public class TabsLayout extends HorizontalScrollView {
 
-    private ViewGroup mContainer;
+    private LinearLayout mContainer;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private LayoutInflater mInflater;
     private Context mContext;
 
     private final Rect mRect;
+    public TextView mTabHead;
+
     {
         mRect = new Rect();
     }
@@ -54,19 +54,25 @@ public class TabsLayout extends HorizontalScrollView {
 
         mInflater = LayoutInflater.from(context);
 
-        mContainer = new LinearLayout(context);
-        ((LinearLayout) mContainer).setOrientation(LinearLayout.HORIZONTAL);
-        mContainer.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
-        mContainer.setLayoutTransition(new LayoutTransition());
+        View tasLayoutContainer = View.inflate(context,R.layout.tabs_layout_container,null);
+        mContainer = (LinearLayout) tasLayoutContainer.findViewById(R.id.tabs_content);
+        mTabHead = (TextView)tasLayoutContainer.findViewById(R.id.tabs_head);
 
-        addView(mContainer);
+        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) mTabHead.getLayoutParams(); //取控件textView当前的布局参数
+        linearParams.height = DensityUtil.getSysbarHeight(mContext);// 控件的高强制设成20
+
+        linearParams.width = LinearLayout.LayoutParams.MATCH_PARENT;// 控件的宽强制设成30
+
+        mTabHead.setLayoutParams(linearParams);
+
+        addView(tasLayoutContainer);
     }
 
     public void setViewPager(ViewPager pager) {
+
         if (mPagerAdapter != null) {
             mContainer.removeAllViews();
         }
-
         mPager = pager;
         mPagerAdapter = pager.getAdapter();
         populateViews();
@@ -124,6 +130,7 @@ public class TabsLayout extends HorizontalScrollView {
         //获取屏幕的宽度
         int screenWidth = DensityUtil.getScreenWidth(mContext);
         textView.setWidth(screenWidth / 6);
+        textView.setHeight(DensityUtil.dip2px(mContext,40));
         return textView;
     }
 

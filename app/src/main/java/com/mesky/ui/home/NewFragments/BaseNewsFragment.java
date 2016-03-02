@@ -1,4 +1,4 @@
-package com.mesky.ui.home;
+package com.mesky.ui.home.NewFragments;
 
 import android.content.res.Resources;
 import android.os.Bundle;

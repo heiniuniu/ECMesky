@@ -3,6 +3,8 @@ package com.mesky.ui.home;
 import android.content.res.Resources;
 import android.support.v4.app.FragmentManager;
 
+import com.mesky.ui.home.NewFragments.BaseNewsFragment;
+
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package com.mesky.ui.home;
+package com.mesky.ui.home.NewFragments;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.mesky.R;
+import com.mesky.ui.home.BaseListAdapter;
 
 /**
  * Created by Dimitry Ivanov (mail@dimitryivanov.ru) on 29.03.2015.

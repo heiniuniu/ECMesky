@@ -1,4 +1,4 @@
-package com.mesky.ui.home;
+package com.mesky.ui.home.NewFragments;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.mesky.R;
+import com.mesky.ui.home.BaseListAdapter;
 
 /**
  * Created by Dimitry Ivanov (mail@dimitryivanov.ru) on 29.03.2015.
@@ -17,7 +18,7 @@ import com.mesky.R;
  */
 public class ListViewFragment4 extends BaseNewsFragment {
 
-    static final String TAG = "tag.ListViewFragment4";
+    public static final String TAG = "tag.ListViewFragment4";
 
     public static ListViewFragment4 newInstance(int color) {
         final Bundle bundle = new Bundle();

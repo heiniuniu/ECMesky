@@ -2,6 +2,8 @@ package com.mesky.utils;
 
 import android.content.Context;
 
+import java.lang.reflect.Field;
+
 /**
  * 屏幕尺寸及尺寸转换
  *
@@ -73,5 +75,26 @@ public class DensityUtil {
      */
     public static int getScreenHeight(Context context) {
         return context.getResources().getDisplayMetrics().heightPixels;
+    }
+
+    public static int getSysbarHeight(Context context) {
+
+        Class<?> target = null;
+        Object obj = null;
+        Field field = null;
+        int temp = 0, sbar = 25; //默认应该是25dp
+        try {
+            target = Class.forName("com.android.internal.R$dimen");
+            obj = target.newInstance();
+            field = target.getField("status_bar_height");
+            temp = Integer.parseInt(field.get(obj).toString());
+            sbar = context.getResources().getDimensionPixelSize(temp);
+            Lg.d("sbar height:", DensityUtil.px2dip(context, sbar));
+        } catch (Exception e1) {
+
+            Lg.d("get sbar height fail");
+            e1.printStackTrace();
+        }
+        return sbar;
     }
 }

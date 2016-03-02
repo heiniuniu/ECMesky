@@ -1,4 +1,4 @@
-package com.mesky.ui.home;
+package com.mesky.ui.home.NewFragments;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,20 +10,21 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.mesky.R;
+import com.mesky.ui.home.BaseListAdapter;
 
 /**
  * Created by Dimitry Ivanov (mail@dimitryivanov.ru) on 29.03.2015.
- * 活动
+ * 动态
  */
-public class ListViewFragment5 extends BaseNewsFragment {
+public class ListViewFragment2 extends BaseNewsFragment {
 
-    static final String TAG = "tag.ListViewFragment5";
+    public static final String TAG = "tag.ListViewFragment2";
 
-    public static ListViewFragment5 newInstance(int color) {
+    public static ListViewFragment2 newInstance(int color) {
         final Bundle bundle = new Bundle();
         bundle.putInt(ARG_COLOR, color);
 
-        final ListViewFragment5 fragment = new ListViewFragment5();
+        final ListViewFragment2 fragment = new ListViewFragment2();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -50,7 +51,7 @@ public class ListViewFragment5 extends BaseNewsFragment {
 
     @Override
     public CharSequence getTitle(Resources r) {
-        return "问答";
+        return "动态";
     }
 
     @Override

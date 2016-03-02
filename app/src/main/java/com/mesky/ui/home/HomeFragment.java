@@ -8,6 +8,15 @@ import android.view.View;
 
 import com.mesky.R;
 import com.mesky.ui.common.BaseFragment;
+import com.mesky.ui.home.NewFragments.BaseNewsFragment;
+import com.mesky.ui.home.NewFragments.ListViewFragment;
+import com.mesky.ui.home.NewFragments.ListViewFragment1;
+import com.mesky.ui.home.NewFragments.ListViewFragment2;
+import com.mesky.ui.home.NewFragments.ListViewFragment3;
+import com.mesky.ui.home.NewFragments.ListViewFragment4;
+import com.mesky.ui.home.NewFragments.ListViewFragment5;
+import com.mesky.utils.DensityUtil;
+import com.mesky.utils.Lg;
 import com.mesky.widgets.TabsLayout;
 
 import java.util.ArrayList;
@@ -25,6 +34,12 @@ public class HomeFragment extends BaseFragment {
     private static final String ARG_LAST_SCROLL_Y = "arg.LastScrollY";
     private ScrollableLayout mScrollableLayout;
     private View mContentView;
+
+    /**
+     * tabs的初始状态
+     */
+    private boolean isTabGone = true;
+
     @Override
     public View getContentView() {
 
@@ -47,7 +62,6 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         final View header = mContentView.findViewById(R.id.header);
         final TabsLayout tabs = (TabsLayout) mContentView.findViewById(R.id.tabs);
-
         mScrollableLayout = (ScrollableLayout) mContentView.findViewById(R.id.scrollable_layout);
         mScrollableLayout.setDraggableView(tabs);
 
@@ -74,10 +88,13 @@ public class HomeFragment extends BaseFragment {
                 } else {
                     tabsTranslationY = y - maxY;
                 }
-
                 tabs.setTranslationY(tabsTranslationY);
 
                 header.setTranslationY(y / 2);
+
+                Lg.d(y);
+
+                controlTabsHeadState(y, tabs,maxY);
             }
         });
 
@@ -89,6 +106,25 @@ public class HomeFragment extends BaseFragment {
                     mScrollableLayout.scrollTo(0, y);
                 }
             });
+        }
+    }
+
+    /**
+     * 处理tab 的头部隐藏状态
+     * @param y
+     * @param tabs
+     */
+    private void controlTabsHeadState(int y, TabsLayout tabs,int maxY) {
+        if(!isTabGone) {
+
+            tabs.mTabHead.setVisibility(View.GONE);
+            isTabGone = true;
+        }
+        Lg.d(DensityUtil.dip2px(getActivity(),300));
+        if(y == DensityUtil.dip2px(getActivity(),300)) {
+
+            tabs.mTabHead.setVisibility(View.VISIBLE);
+            isTabGone = false;
         }
     }
 
